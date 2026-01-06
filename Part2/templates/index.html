@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Flask Templates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        nav {
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+
+        </nav>
+
+        <h1>Welcome to Flask Templates!</h1>
+
+        <p>This page is being served from an HTML file in the <code>templates/</code> folder.</p>
+
+        <div class="highlight">
+            <strong>What's happening?</strong>
+            <p>When you visit this URL, Flask:</p>
+            <ol>
+                <li>Receives your browser's request</li>
+                <li>Matches the URL to the <code>@app.route('/')</code></li>
+                <li>Calls the <code>home()</code> function</li>
+                <li>Loads <code>templates/index.html</code></li>
+                <li>Sends this HTML back to your browser</li>
+            </ol>
+        </div>
+
+        <h2>Why Use Templates?</h2>
+        <ul>
+            <li><strong>Separation of Concerns:</strong> Python handles logic, HTML handles presentation</li>
+            <li><strong>Easier to Maintain:</strong> Edit HTML without touching Python code</li>
+            <li><strong>Reusability:</strong> Same template can be used with different data</li>
+            <li><strong>Jinja2 Power:</strong> We can add Python-like logic to HTML (next part!)</li>
+        </ul>
+    </div>
+</body>
+</html>
