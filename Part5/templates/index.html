@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Home | {{ info.name }}{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Hello, I'm {{ info.name }}</h1>
+    <p class="title">{{ info.title }}</p>
+    <p class="bio">{{ info.bio }}</p>
+
+    <div style="margin-top: 30px;">
+        <a href="{{ url_for('projects') }}" class="btn btn-primary">View My Projects</a>
+        <a href="{{ url_for('contact') }}" class="btn btn-secondary" style="margin-left: 10px;">Contact Me</a>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Welcome to My Flask-Powered Website!</h2>
+    <p>This personal website demonstrates everything you've learned in the Flask tutorial:</p>
+
+    <div class="info-box success">
+        <strong>Concepts Used on This Site:</strong>
+        <ul style="margin-top: 10px; margin-left: 20px;">
+            <li><strong>Part 1:</strong> Flask app setup and routing</li>
+            <li><strong>Part 2:</strong> Templates with render_template()</li>
+            <li><strong>Part 3:</strong> Jinja2 variables, loops, and conditionals</li>
+            <li><strong>Part 4:</strong> Dynamic routes</li>
+            <li><strong>Part 5:</strong> Template inheritance and static files</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Try Dynamic Routes</h2>
+    <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:15px;">
+        <a href="/products" class="btn btn-secondary">View Products</a>
+        <a href="/category/electronics/product/1" class="btn btn-secondary">Category Product</a>
+    </div>
+
+    <form action="/search" method="get">
+        <input type="text" name="q" class="search-input" placeholder="Search anything...">
+        <button class="search-btn">Search</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2>Quick Navigation</h2>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+        <a href="{{ url_for('about') }}" class="btn btn-secondary">About Me</a>
+        <a href="{{ url_for('projects') }}" class="btn btn-secondary">My Projects</a>
+        <a href="{{ url_for('contact') }}" class="btn btn-secondary">Contact</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}All Products | {{ info.name }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>All Products</h2>
+    <p>Select any product to view details</p>
+
+    <div style="display:flex; flex-wrap:wrap; gap:15px; margin-top:20px;">
+        {% for id, product in products.items() %}
+        <a href="/product/{{ id }}" class="btn btn-secondary">
+            {{ product.name }} – ₹{{ product.price }}
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

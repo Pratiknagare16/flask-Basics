@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if project and project.name %}
+    {{ project.name }} | {{ info.name }}
+{% else %}
+    Project Not Found | {{ info.name }}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if project %}
+<div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 15px;">
+        <div>
+            <h2 style="border: none; padding: 0;">{{ project.name }}</h2>
+
+            {% if project.status == 'Completed' %}
+                <span class="status status-completed">{{ project.status }}</span>
+            {% elif project.status == 'In Progress' %}
+                <span class="status status-in-progress">{{ project.status }}</span>
+            {% else %}
+                <span class="status status-planned">{{ project.status }}</span>
+            {% endif %}
+        </div>
+        <a href="{{ url_for('projects') }}" class="btn btn-secondary">Back to Projects</a>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Project Details</h2>
+    <p style="font-size: 18px; margin-bottom: 20px;">
+        {{ project.description }}
+    </p>
+
+    {% if project.tech %}
+    <h3 style="margin-top: 25px;">Technologies Used</h3>
+    <div class="tech-tags" style="margin-top: 10px;">
+        {% for tech in project.tech %}
+            <span class="tech-tag">{{ tech }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<div class="info-box">
+    <strong>Dynamic Route in Action!</strong>
+    <p>This page uses the route: <code>/project/&lt;int:project_id&gt;</code></p>
+    <p>Current project ID: <strong>{{ project_id }}</strong></p>
+    <p>URL: <code>{{ url_for('project_detail', project_id=project_id) }}</code></p>
+</div>
+
+<div class="card">
+    <h2>Other Projects</h2>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        {% if project_id > 1 %}
+        <a href="{{ url_for('project_detail', project_id=project_id - 1) }}" class="btn btn-secondary">
+            Previous Project
+        </a>
+        {% endif %}
+
+        <a href="{{ url_for('project_detail', project_id=project_id + 1) }}" class="btn btn-secondary">
+            Next Project
+        </a>
+    </div>
+</div>
+
+{% else %}
+<div class="card">
+    <div class="not-found">
+        <h2>Project Not Found</h2>
+        <p>Sorry, project #{{ project_id }} doesn't exist.</p>
+        <p style="margin-top: 20px;">
+            <a href="{{ url_for('projects') }}" class="btn btn-primary">View All Projects</a>
+        </p>
+    </div>
+</div>
+
+<div class="info-box warning">
+    <strong>This is Intentional!</strong>
+    <p>This demonstrates how to handle missing data safely in Jinja templates.</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Contact | {{ info.name }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Get in Touch</h2>
+    <p>Feel free to reach out to me through any of the following channels:</p>
+
+    <div style="margin-top: 20px;">
+        {% if info.email %}
+        <div class="contact-item">
+            <span>Email:</span>
+            <a href="mailto:{{ info.email }}">{{ info.email }}</a>
+        </div>
+        {% endif %}
+
+        {% if info.github %}
+        <div class="contact-item">
+            <span>GitHub:</span>
+            <a href="{{ info.github }}" target="_blank">{{ info.github }}</a>
+        </div>
+        {% endif %}
+
+        {% if info.linkedin %}
+        <div class="contact-item">
+            <span>LinkedIn:</span>
+            <a href="{{ info.linkedin }}" target="_blank">{{ info.linkedin }}</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="card">
+    <h2>About This Page</h2>
+    <p>This contact page demonstrates:</p>
+    <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Using <code>mailto:</code> links with Jinja2 variables</li>
+        <li>Opening external links with <code>target="_blank"</code></li>
+        <li>Template inheritance (<code>extends base.html</code>)</li>
+        <li>Static CSS styling from <code>static/style.css</code></li>
+        <li>Safe Jinja conditionals to avoid runtime errors</li>
+    </ul>
+</div>
+
+<div class="info-box success">
+    <strong>Well Done!</strong>
+    <p>You’ve successfully built a dynamic Flask-powered personal website.</p>
+    <p style="margin-top: 10px;">
+        <strong>Next Steps:</strong> Add a database, login system, or blog to make it even more powerful!
+    </p>
+</div>
+
+<div class="card">
+    <h2>Quick Links</h2>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">Home</a>
+        <a href="{{ url_for('about') }}" class="btn btn-secondary">About</a>
+        <a href="{{ url_for('projects') }}" class="btn btn-secondary">Projects</a>
+    </div>
+</div>
+{% endblock %}

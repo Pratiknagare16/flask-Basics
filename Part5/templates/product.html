@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Product | {{ info.name }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    {% if product %}
+        <h2>{{ product.name }}</h2>
+        <p style="font-size: 18px;">Price: ₹{{ product.price }}</p>
+
+        <div class="info-box success" style="margin-top: 15px;">
+            <strong>Dynamic Route:</strong>
+            <p>This page is loaded from <code>/product/&lt;id&gt;</code></p>
+            <p>Product ID: <b>{{ product_id }}</b></p>
+        </div>
+    {% else %}
+        <div class="not-found">
+            <h2>Product Not Found</h2>
+            <p>Sorry, this product does not exist.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

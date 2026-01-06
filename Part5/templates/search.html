@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Search | {{ info.name }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Search Results</h2>
+
+    {% if query %}
+        <p>You searched for: <strong>{{ query }}</strong></p>
+
+        {% if results %}
+            <div style="display:flex; flex-wrap:wrap; gap:15px; margin-top:20px;">
+                {% for id, product in results.items() %}
+                    <a href="/product/{{ id }}" class="btn btn-secondary">
+                        {{ product.name }} – ₹{{ product.price }}
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p style="margin-top:15px;">No products found.</p>
+        {% endif %}
+
+    {% else %}
+        <p>Please enter a search term.</p>
+    {% endif %}
+</div>
+{% endblock %}

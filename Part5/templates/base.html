@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% if info and info.name %}
+            {% block title %}{{ info.name }}{% endblock %}
+        {% else %}
+            Flask App
+        {% endif %}
+    </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-brand">
+        <a href="{{ url_for('home') }}">
+            {% if info and info.name %}
+                {{ info.name }}
+            {% else %}
+                Home
+            {% endif %}
+        </a>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="{{ url_for('home') }}" class="{% if request.endpoint=='home' %}active{% endif %}">Home</a></li>
+        <li><a href="{{ url_for('about') }}" class="{% if request.endpoint=='about' %}active{% endif %}">About</a></li>
+        <li><a href="{{ url_for('projects') }}" class="{% if request.endpoint in ['projects','project_detail'] %}active{% endif %}">Projects</a></li>
+        <li><a href="{{ url_for('contact') }}" class="{% if request.endpoint=='contact' %}active{% endif %}">Contact</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <p>
+        &copy; 2024 
+        {% if info and info.name %}
+            {{ info.name }}
+        {% else %}
+            Flask App
+        {% endif %}
+        | Built with Flask
+    </p>
+    <p class="footer-note">
+        This website is served by a Python Flask server!
+    </p>
+</footer>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}About | {{ info.name }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>About Me</h2>
+    <p style="font-size: 18px; margin-bottom: 20px;">
+        {{ info.bio }}
+    </p>
+
+    <div class="info-box">
+        <strong>Jinja2 in Action:</strong>
+        <p>
+            This page demonstrates passing multiple variables
+            (<code>info</code> and <code>skills</code>) from Flask to the template.
+        </p>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Dynamic Routes Used in This Website</h2>
+    <p>This website includes powerful dynamic Flask routes:</p>
+    <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><code>/project/&lt;id&gt;</code> – Dynamic project pages</li>
+        <li><code>/product/&lt;id&gt;</code> – Dynamic product pages</li>
+        <li><code>/category/&lt;name&gt;/product/&lt;id&gt;</code> – Category based products</li>
+        <li><code>/search</code> – Search using query parameters</li>
+    </ul>
+
+    <div class="info-box success" style="margin-top: 15px;">
+        <strong>Real-world Example:</strong>
+        <p>
+            These URLs behave like real applications such as Amazon, Netflix, and Instagram.
+        </p>
+    </div>
+</div>
+
+<div class="card">
+    <h2>My Skills</h2>
+    <p style="margin-bottom: 20px;">
+        Here are my technical skills with proficiency levels:
+    </p>
+
+    {% for skill in skills %}
+    <div class="skill-item">
+        <div class="skill-name">
+            <span>{{ skill.name }}</span>
+            <span>{{ skill.level }}%</span>
+        </div>
+
+        <div class="skill-bar">
+            <div class="skill-progress" data-level="{{ skill.level }}"></div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="info-box" style="margin-top: 20px;">
+        <strong>Jinja For Loop:</strong>
+        <p>The skills above are rendered using a Jinja2 for loop:</p>
+        <code style="display: block; background: #edf2f7; padding: 10px; border-radius: 5px;">
+            {% raw %}
+            {% for skill in skills %}
+                {{ skill.name }} - {{ skill.level }}%
+            {% endfor %}
+            {% endraw %}
+        </code>
+    </div>
+</div>
+
+<div class="card">
+    <h2>What I'm Learning</h2>
+    <ul style="margin-left: 20px;">
+        <li>Python & Flask for backend development</li>
+        <li>HTML, CSS, and JavaScript for frontend</li>
+        <li>Database management with SQL</li>
+        <li>Version control with Git</li>
+        <li>RESTful API design</li>
+    </ul>
+</div>
+
+<script>
+    document.querySelectorAll(".skill-progress").forEach(bar => {
+        const level = bar.getAttribute("data-level");
+        bar.style.width = level + "%";
+    });
+</script>
+{% endblock %}

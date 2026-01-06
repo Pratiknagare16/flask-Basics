@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Category Product | {{ info.name }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Category: <span class="category-badge">{{ category }}</span></h2>
+
+    {% if product %}
+        <p style="font-size: 18px; margin-top: 10px;">
+            {{ product.name }} — ₹{{ product.price }}
+        </p>
+
+        <div class="info-box success" style="margin-top: 15px;">
+            <strong>Dynamic Route:</strong>
+            <p><code>/category/&lt;name&gt;/product/&lt;id&gt;</code></p>
+            <p>Category: {{ category }}</p>
+            <p>Product ID: {{ product_id }}</p>
+        </div>
+    {% else %}
+        <div class="not-found">
+            <h2>Product Not Found</h2>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
