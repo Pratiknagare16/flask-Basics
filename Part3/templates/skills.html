@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - Jinja2 Loops</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2d3748; }
+        nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 5px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover { color: #2b6cb0; }
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .skill-badge {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+        .skill-list {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .skill-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 15px 0;
+        }
+        .loop-info {
+            background: #faf5ff;
+            border-left: 4px solid #9f7aea;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/skills">Skills</a>
+            <a href="/projects">Projects</a>
+        </nav>
+
+        <h1>My Skills</h1>
+        <p>This page demonstrates <strong>Jinja2 for loops</strong> - iterating over a list!</p>
+
+        <!-- Display skills as badges using a for loop -->
+        <div class="skills-container">
+            {% for skill in skills %}
+                <span class="skill-badge">{{ skill }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="loop-info">
+            <strong>The for loop in action!</strong>
+            <p>The badges above are generated dynamically. In Python, we passed:</p>
+            <code>skills = ['Python', 'HTML', 'CSS', 'JavaScript', 'Flask']</code>
+        </div>
+
+        <h2>Skills as a List</h2>
+        <ul class="skill-list">
+            {% for skill in skills %}
+                <li>
+                    <strong>{{ loop.index }}.</strong> {{ skill }}
+                    {% if loop.first %}
+                        <em>(First skill!)</em>
+                    {% endif %}
+                    {% if loop.last %}
+                        <em>(Last skill!)</em>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>How For Loops Work</h2>
+        <div class="code-example">
+&#123;% for skill in skills %&#125;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;{{ skill }}&lt;/span&gt;<br>
+&#123;% endfor %&#125;
+        </div>
+
+        <h2>Useful Loop Variables</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr style="background: #edf2f7;">
+                <th style="padding: 10px; text-align: left;">Variable</th>
+                <th style="padding: 10px; text-align: left;">Description</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>loop.index</code></td>
+                <td style="padding: 10px;">Current iteration (1-indexed)</td>
+            </tr>
+            <tr style="background: #f7fafc;">
+                <td style="padding: 10px;"><code>loop.index0</code></td>
+                <td style="padding: 10px;">Current iteration (0-indexed)</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>loop.first</code></td>
+                <td style="padding: 10px;">True if first iteration</td>
+            </tr>
+            <tr style="background: #f7fafc;">
+                <td style="padding: 10px;"><code>loop.last</code></td>
+                <td style="padding: 10px;">True if last iteration</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>loop.length</code></td>
+                <td style="padding: 10px;">Total number of items</td>
+            </tr>
+        </table>
+
+        <p style="margin-top: 20px;">
+            <strong>Total skills:</strong> {{ skills|length }}
+        </p>
+    </div>
+</body>
+</html>

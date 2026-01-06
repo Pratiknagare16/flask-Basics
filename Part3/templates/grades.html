@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades</title>
+</head>
+<body>
+<div class="container">
+    <h1>My Grades</h1>
+
+    <table border="1" width="100%">
+        <tr>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+
+        {% for subject, mark in grades.items() %}
+        <tr>
+            <td>{{ subject }}</td>
+            <td>{{ mark }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/">Home</a>
+</div>
+</body>
+</html>

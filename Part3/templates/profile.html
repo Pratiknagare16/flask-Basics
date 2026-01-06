@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Jinja2 Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2d3748; }
+        nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 5px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover { color: #2b6cb0; }
+        .profile-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .profile-card h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+        .profile-item {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .profile-item span {
+            opacity: 0.8;
+        }
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .badge-success {
+            background: #48bb78;
+        }
+        .badge-warning {
+            background: #ed8936;
+        }
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/skills">Skills</a>
+            <a href="/projects">Projects</a>
+        </nav>
+
+        <h1>User Profile</h1>
+        <p>This page demonstrates passing multiple variables to a template.</p>
+
+        <!-- Profile card using multiple variables -->
+        <div class="profile-card">
+            <h2>{{ name }}</h2>
+
+            <div class="profile-item">
+                <span>Age:</span> {{ age }} years old
+            </div>
+
+            <div class="profile-item">
+                <span>Course:</span> {{ course }}
+            </div>
+
+            <!-- Exercise 3.1 -->
+            <div class="profile-item">
+                <span>Email:</span> {{ email }}
+            </div>
+
+            <div class="profile-item">
+                <span>City:</span> {{ city }}
+            </div>
+
+            <div class="profile-item">
+                <span>Status:</span>
+                <!-- Exercise 3.2 -->
+                {% if is_enrolled %}
+                    <span class="badge badge-success">Enrolled</span>
+                {% else %}
+                    <span class="badge badge-warning">Not Enrolled</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <h2>How It Works</h2>
+        <p>In <code>app.py</code>, we pass multiple variables:</p>
+
+        <div class="code-example">
+return render_template('profile.html',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name='Sarah',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;age=22,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;course='Web Development',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;email='sarah@gmail.com',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;city='Mumbai',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;is_enrolled=True)
+        </div>
+
+        <h2>Jinja2 Conditionals</h2>
+        <p>Notice the enrollment status badge? It uses a Jinja2 if-statement:</p>
+
+        <div class="code-example">
+&#123;% if is_enrolled %&#125;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="badge-success"&gt;Enrolled&lt;/span&gt;<br>
+&#123;% else %&#125;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="badge-warning"&gt;Not Enrolled&lt;/span&gt;<br>
+&#123;% endif %&#125;
+        </div>
+    </div>
+</body>
+</html>

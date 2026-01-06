@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinja2 Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2d3748; }
+        nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 5px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover { color: #2b6cb0; }
+        .highlight {
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .variable-demo {
+            font-size: 24px;
+            color: #2b6cb0;
+            padding: 20px;
+            background: #bee3f8;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/skills">Skills</a>
+            <a href="/projects">Projects</a>
+        </nav>
+
+        <h1>Welcome to Jinja2 Variables!</h1>
+
+        <!-- HERE'S THE MAGIC: Using a variable passed from Python -->
+        <div class="variable-demo">
+            Hello, <strong>{{ name }}</strong>!
+        </div>
+
+        <div class="highlight">
+            <strong>What just happened?</strong>
+            <p>In <code>app.py</code>, we wrote:</p>
+            <code>return render_template('index.html', name=student_name)</code>
+            <p>And in this HTML, we display it with:</p>
+            <code>{% raw %}{{ name }}{% endraw %}</code>
+        </div>
+
+        <h2>The Double Curly Braces {% raw %}{{ }}{% endraw %}</h2>
+        <p>In Jinja2 templates, <code>{% raw %}{{ }}{% endraw %}</code> means "output this Python value here".</p>
+
+        <ul>
+            <li><code>{% raw %}{{ name }}{% endraw %}</code> - Outputs the value of <code>name</code></li>
+            <li><code>{% raw %}{{ name|upper }}{% endraw %}</code> - Outputs in UPPERCASE: <strong>{{ name|upper }}</strong></li>
+            <li><code>{% raw %}{{ name|lower }}{% endraw %}</code> - Outputs in lowercase: <strong>{{ name|lower }}</strong></li>
+            <li><code>{% raw %}{{ name|length }}{% endraw %}</code> - Length of the name: <strong>{{ name|length }}</strong> characters</li>
+        </ul>
+
+        <p>Explore the other pages to see more Jinja2 features!</p>
+    </div>
+</body>
+</html>

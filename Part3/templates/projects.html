@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Jinja2 Advanced</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2d3748; }
+        nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 5px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover { color: #2b6cb0; }
+        .project-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: box-shadow 0.2s;
+        }
+        .project-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .project-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        .project-tech {
+            color: #718096;
+            font-size: 14px;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-completed {
+            background: #c6f6d5;
+            color: #276749;
+        }
+        .status-in-progress {
+            background: #feebc8;
+            color: #c05621;
+        }
+        .status-planned {
+            background: #e9d8fd;
+            color: #6b46c1;
+        }
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #edf2f7;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/skills">Skills</a>
+            <a href="/projects">Projects</a>
+        </nav>
+
+        <h1>My Projects</h1>
+        <p>This page shows how to loop through a <strong>list of dictionaries</strong> - a common pattern when displaying database data!</p>
+
+        <!-- Project cards -->
+        {% for project in projects %}
+        <div class="project-card">
+            <div class="project-name">{{ project.name }}</div>
+            <div class="project-tech">Tech: {{ project.tech }}</div>
+            <div style="margin-top: 10px;">
+                {% if project.status == 'Completed' %}
+                    <span class="status status-completed">{{ project.status }}</span>
+                {% elif project.status == 'In Progress' %}
+                    <span class="status status-in-progress">{{ project.status }}</span>
+                {% else %}
+                    <span class="status status-planned">{{ project.status }}</span>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <h2>The Data Structure</h2>
+        <p>In <code>app.py</code>, we pass a list of dictionaries:</p>
+
+        <div class="code-example">
+project_list = [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{'name': 'Personal Website', 'status': 'Completed', 'tech': 'HTML/CSS'},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{'name': 'Flask Blog', 'status': 'In Progress', 'tech': 'Python/Flask'},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{'name': 'Weather App', 'status': 'Planned', 'tech': 'JavaScript'},<br>
+]
+        </div>
+
+        <h2>Accessing Dictionary Values</h2>
+        <p>In Jinja2, you can access dictionary values with dot notation:</p>
+
+        <!-- FIXED: Escaped so Jinja does NOT try to evaluate -->
+        <div class="code-example">
+&#123;&#123; project.name &#125;&#125;<br>
+&#123;&#123; project.status &#125;&#125;<br>
+&#123;&#123; project.tech &#125;&#125;
+        </div>
+
+        <h2>As a Table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Project Name</th>
+                    <th>Technology</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ project.name }}</td>
+                    <td>{{ project.tech }}</td>
+                    <td>{{ project.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p><strong>Total Projects:</strong> {{ projects|length }}</p>
+    </div>
+</body>
+</html>
