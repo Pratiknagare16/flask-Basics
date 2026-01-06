@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Product Details</h1>
+
+{% if product %}
+<h2>{{ product.name }}</h2>
+<p>Price: ₹{{ product.price }}</p>
+{% else %}
+<h2>Product Not Found</h2>
+{% endif %}
+
+<a href="/">Home</a>
+</body>
+</html>

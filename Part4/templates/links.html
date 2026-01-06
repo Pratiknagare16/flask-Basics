@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Builder - url_for()</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2d3748; }
+        nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 5px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .link-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .link-table th, .link-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .link-table th {
+            background: #edf2f7;
+        }
+        .link-table a {
+            color: #4299e1;
+        }
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 15px 0;
+        }
+        .benefit {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/links">URL Builder</a>
+        </nav>
+
+        <h1>URL Building with url_for()</h1>
+
+        <p>Instead of hardcoding URLs, Flask provides <code>url_for()</code> to generate URLs dynamically!</p>
+
+        <div class="benefit">
+            <strong>Why use url_for()?</strong>
+            <ul>
+                <li>URLs automatically update if you change route paths</li>
+                <li>Handles URL encoding for special characters</li>
+                <li>Makes your code more maintainable</li>
+                <li>Works in both Python and Jinja2 templates</li>
+            </ul>
+        </div>
+
+        <h2>Generated URLs</h2>
+        <p>These URLs were generated in Python using <code>url_for()</code>:</p>
+
+        <table class="link-table">
+            <tr>
+                <th>url_for() Call</th>
+                <th>Generated URL</th>
+                <th>Test It</th>
+            </tr>
+            <tr>
+                <td><code>url_for('home')</code></td>
+                <td><code>{{ links.home }}</code></td>
+                <td><a href="{{ links.home }}">Visit</a></td>
+            </tr>
+            <tr>
+                <td><code>url_for('about')</code></td>
+                <td><code>{{ links.about }}</code></td>
+                <td><a href="{{ links.about }}">Visit</a></td>
+            </tr>
+            <tr>
+                <td><code>url_for('user_profile', username='Alice')</code></td>
+                <td><code>{{ links.user_alice }}</code></td>
+                <td><a href="{{ links.user_alice }}">Visit</a></td>
+            </tr>
+            <tr>
+                <td><code>url_for('user_profile', username='Bob')</code></td>
+                <td><code>{{ links.user_bob }}</code></td>
+                <td><a href="{{ links.user_bob }}">Visit</a></td>
+            </tr>
+            <tr>
+                <td><code>url_for('show_post', post_id=1)</code></td>
+                <td><code>{{ links.post_1 }}</code></td>
+                <td><a href="{{ links.post_1 }}">Visit</a></td>
+            </tr>
+            <tr>
+                <td><code>url_for('show_post', post_id=2)</code></td>
+                <td><code>{{ links.post_2 }}</code></td>
+                <td><a href="{{ links.post_2 }}">Visit</a></td>
+            </tr>
+        </table>
+
+        <h2>Using url_for() in Python</h2>
+        <div class="code-block">
+from flask import url_for<br><br>
+# Basic usage<br>
+url_for('home')  # Returns '/'<br><br>
+# With parameters<br>
+url_for('user_profile', username='Alice')  # Returns '/user/Alice'<br>
+url_for('show_post', post_id=42)  # Returns '/post/42'
+        </div>
+
+        <h2>Using url_for() in Templates</h2>
+        <div class="code-block">
+&lt;!-- Link to home --&gt;<br>
+&lt;a href="{{ url_for('home') }}"&gt;Home&lt;/a&gt;<br><br>
+&lt;!-- Link with parameter --&gt;<br>
+&lt;a href="{{ url_for('user_profile', username='Alice') }}"&gt;Alice&lt;/a&gt;
+        </div>
+
+        <p><a href="/">Back to Home</a></p>
+    </div>
+</body>
+</html>

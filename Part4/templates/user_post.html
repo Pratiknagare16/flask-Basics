@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ username }}'s Post #{{ post_id }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 5px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .breadcrumb {
+            color: #718096;
+            margin-bottom: 20px;
+        }
+        .breadcrumb a {
+            color: #4299e1;
+            text-decoration: none;
+        }
+        .post-header {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .post-header h1 {
+            margin: 0 0 10px 0;
+        }
+        .post-meta {
+            opacity: 0.9;
+        }
+        .info-box {
+            background: #faf5ff;
+            border-left: 4px solid #9f7aea;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/links">URL Builder</a>
+        </nav>
+
+        <!-- Breadcrumb navigation -->
+        <div class="breadcrumb">
+            <a href="/">Home</a> /
+            <a href="/user/{{ username }}">{{ username }}</a> /
+            Post {{ post_id }}
+        </div>
+
+        <div class="post-header">
+            <h1>{{ username }}'s Post #{{ post_id }}</h1>
+            <div class="post-meta">
+                Author: {{ username }} | Post ID: {{ post_id }}
+            </div>
+        </div>
+
+        <p>This page demonstrates <strong>multiple URL parameters</strong> in a single route!</p>
+
+        <div class="info-box">
+            <strong>Multiple Parameters in One Route</strong>
+            <p>URL Pattern: <code>/user/&lt;username&gt;/post/&lt;int:post_id&gt;</code></p>
+            <p>Current URL: <code>/user/{{ username }}/post/{{ post_id }}</code></p>
+
+            <div class="code-block">
+@app.route('/user/&lt;username&gt;/post/&lt;int:post_id&gt;')<br>
+def user_post(username, post_id):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return render_template('user_post.html',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;username=username,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;post_id=post_id)
+            </div>
+        </div>
+
+        <h2>Captured Values</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr style="background: #edf2f7;">
+                <th style="padding: 10px; text-align: left;">Parameter</th>
+                <th style="padding: 10px; text-align: left;">Value</th>
+                <th style="padding: 10px; text-align: left;">Type</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><code>username</code></td>
+                <td style="padding: 10px;"><strong>{{ username }}</strong></td>
+                <td style="padding: 10px;">string</td>
+            </tr>
+            <tr style="background: #f7fafc;">
+                <td style="padding: 10px;"><code>post_id</code></td>
+                <td style="padding: 10px;"><strong>{{ post_id }}</strong></td>
+                <td style="padding: 10px;">integer</td>
+            </tr>
+        </table>
+
+        <h2>Try More Combinations</h2>
+        <ul>
+            <li><a href="/user/Alice/post/1">/user/Alice/post/1</a></li>
+            <li><a href="/user/Bob/post/2">/user/Bob/post/2</a></li>
+            <li><a href="/user/Charlie/post/3">/user/Charlie/post/3</a></li>
+        </ul>
+    </div>
+</body>
+</html>

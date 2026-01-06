@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Dynamic Routes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2d3748; }
+        nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 5px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #edf2f7;
+        }
+        .tip {
+            background: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/links">URL Builder</a>
+        </nav>
+
+        <h1>About Dynamic Routes</h1>
+
+        <p>Dynamic routes allow you to capture parts of the URL and use them as variables in your Python functions.</p>
+
+        <h2>URL Parameter Types</h2>
+        <table>
+            <tr>
+                <th>Syntax</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td><code>&lt;variable&gt;</code></td>
+                <td>String (default)</td>
+                <td>/user/alice</td>
+            </tr>
+            <tr>
+                <td><code>&lt;int:variable&gt;</code></td>
+                <td>Positive integer</td>
+                <td>/post/123</td>
+            </tr>
+            <tr>
+                <td><code>&lt;float:variable&gt;</code></td>
+                <td>Floating point</td>
+                <td>/price/19.99</td>
+            </tr>
+            <tr>
+                <td><code>&lt;path:variable&gt;</code></td>
+                <td>String with slashes</td>
+                <td>/file/docs/readme.md</td>
+            </tr>
+        </table>
+
+        <div class="tip">
+            <strong>Tip: Trailing Slashes</strong>
+            <p>Notice this page works with both <code>/about</code> and <code>/about/</code>?</p>
+            <p>That's because the route is defined as <code>@app.route('/about/')</code> with a trailing slash.</p>
+        </div>
+
+        <h2>Why Use Dynamic Routes?</h2>
+        <ul>
+            <li><strong>User profiles:</strong> <code>/user/&lt;username&gt;</code></li>
+            <li><strong>Blog posts:</strong> <code>/post/&lt;int:id&gt;</code></li>
+            <li><strong>Product pages:</strong> <code>/product/&lt;int:product_id&gt;</code></li>
+            <li><strong>Categories:</strong> <code>/category/&lt;name&gt;</code></li>
+        </ul>
+
+        <p><a href="/">Back to Home</a></p>
+    </div>
+</body>
+</html>

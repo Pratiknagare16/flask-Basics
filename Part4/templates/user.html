@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ username }}'s Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 5px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .profile-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+        .info-box {
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/links">URL Builder</a>
+        </nav>
+
+        <div class="profile-header">
+            <div class="avatar">
+                {{ username[0]|upper }}
+            </div>
+            <h1>{{ username }}</h1>
+            <p>Welcome to {{ username }}'s profile page!</p>
+        </div>
+
+        <div class="info-box">
+            <strong>How this works:</strong>
+            <p>The URL <code>/user/{{ username }}</code> was captured by the route:</p>
+            <code>@app.route('/user/&lt;username&gt;')</code>
+            <p>The value <strong>"{{ username }}"</strong> was passed to the template!</p>
+        </div>
+
+        <h2>Try Other Users</h2>
+        <p>Change the URL to see different profiles:</p>
+        <ul>
+            <li><a href="/user/Alice">/user/Alice</a></li>
+            <li><a href="/user/Bob">/user/Bob</a></li>
+            <li><a href="/user/{{ username|title }}">/user/{{ username|title }}</a> (current)</li>
+        </ul>
+
+        <h2>See {{ username }}'s Posts</h2>
+        <ul>
+            <li><a href="/user/{{ username }}/post/1">{{ username }}'s Post #1</a></li>
+            <li><a href="/user/{{ username }}/post/2">{{ username }}'s Post #2</a></li>
+        </ul>
+    </div>
+</body>
+</html>

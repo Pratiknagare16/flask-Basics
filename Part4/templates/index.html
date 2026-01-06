@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Routes - Flask</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f0f4f8;
+}
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+h1 { color: #2d3748; }
+nav {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #edf2f7;
+    border-radius: 5px;
+}
+nav a {
+    margin-right: 15px;
+    color: #4a5568;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav a:hover { color: #2b6cb0; }
+
+.route-demo {
+    background: #ebf8ff;
+    border: 2px solid #90cdf4;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+}
+.route-demo h3 {
+    margin-top: 0;
+    color: #2b6cb0;
+}
+.route-demo a {
+    display: inline-block;
+    margin: 5px 10px 5px 0;
+    padding: 8px 16px;
+    background: #4299e1;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.route-demo a:hover { background: #3182ce; }
+
+.search-box {
+    background: #f0fff4;
+    border-left: 5px solid #48bb78;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+input {
+    padding: 8px;
+    width: 250px;
+}
+
+button {
+    padding: 8px 15px;
+    background: #48bb78;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/links">URL Builder</a>
+</nav>
+
+<h1>Dynamic Routes in Flask</h1>
+<p>Learn how Flask captures values from URLs using <code>&lt;variable&gt;</code>!</p>
+
+<div class="search-box">
+    <h3>Search Anything</h3>
+    <form action="/search" method="get">
+        <input type="text" name="q" placeholder="Search here...">
+        <button>Search</button>
+    </form>
+</div>
+
+<div class="route-demo">
+    <h3>User Profiles</h3>
+    <p>Route: <code>/user/&lt;username&gt;</code></p>
+    <a href="/user/Pratik">Pratik</a>
+    <a href="/user/Alice">Alice</a>
+    <a href="/user/Bob">Bob</a>
+</div>
+
+<div class="route-demo">
+    <h3>Posts</h3>
+    <p>Route: <code>/post/&lt;int:post_id&gt;</code></p>
+    <a href="/post/1">Post 1</a>
+    <a href="/post/2">Post 2</a>
+    <a href="/post/3">Post 3</a>
+    <a href="/post/99">Invalid Post</a>
+</div>
+
+<div class="route-demo">
+    <h3>User + Post</h3>
+    <p>Route: <code>/user/&lt;username&gt;/post/&lt;int:post_id&gt;</code></p>
+    <a href="/user/Pratik/post/1">Pratik's Post 1</a>
+    <a href="/user/Alice/post/2">Alice's Post 2</a>
+</div>
+
+<div class="route-demo">
+    <h3>Products</h3>
+    <p>Route: <code>/product/&lt;int:product_id&gt;</code></p>
+    <a href="/product/1">Laptop</a>
+    <a href="/product/2">Phone</a>
+    <a href="/product/3">Headphones</a>
+</div>
+
+<div class="route-demo">
+    <h3>Category Products</h3>
+    <p>Route: <code>/category/&lt;category&gt;/product/&lt;id&gt;</code></p>
+    <a href="/category/electronics/product/1">Electronics → Laptop</a>
+    <a href="/category/mobile/product/2">Mobile → Phone</a>
+</div>
+
+</div>
+</body>
+</html>

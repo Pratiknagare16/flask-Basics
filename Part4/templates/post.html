@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post #{{ post_id }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 5px;
+        }
+        nav a {
+            margin-right: 15px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .post-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .post-card h2 {
+            margin-top: 0;
+            color: #2d3748;
+        }
+        .post-id {
+            background: #4299e1;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .not-found {
+            background: #fed7d7;
+            border: 1px solid #fc8181;
+            color: #c53030;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .not-found h2 {
+            margin-top: 0;
+        }
+        .info-box {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .nav-posts {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .nav-posts a {
+            padding: 10px 20px;
+            background: #edf2f7;
+            color: #4a5568;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .nav-posts a:hover {
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/links">URL Builder</a>
+        </nav>
+
+        <span class="post-id">Post ID: {{ post_id }}</span>
+
+        {% if post %}
+            <!-- Post found - display it -->
+            <div class="post-card">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+            </div>
+
+            <div class="info-box">
+                <strong>Integer Parameter:</strong>
+                <p>The route <code>/post/&lt;int:post_id&gt;</code> only accepts integers.</p>
+                <p>Try <code>/post/abc</code> - it will return a 404 error!</p>
+            </div>
+        {% else %}
+            <!-- Post not found -->
+            <div class="not-found">
+                <h2>Post Not Found</h2>
+                <p>Sorry, post #{{ post_id }} doesn't exist.</p>
+                <p>We only have posts 1, 2, and 3 in our demo database.</p>
+            </div>
+        {% endif %}
+
+        <div class="nav-posts">
+            {% if post_id > 1 %}
+                <a href="/post/{{ post_id - 1 }}">Previous Post</a>
+            {% else %}
+                <span></span>
+            {% endif %}
+
+            <a href="/post/{{ post_id + 1 }}">Next Post</a>
+        </div>
+
+        <h3>Available Posts</h3>
+        <ul>
+            <li><a href="/post/1">Post 1: Getting Started with Flask</a></li>
+            <li><a href="/post/2">Post 2: Understanding Routes</a></li>
+            <li><a href="/post/3">Post 3: Working with Templates</a></li>
+        </ul>
+    </div>
+</body>
+</html>
