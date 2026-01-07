@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal To-Do App</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 15px 30px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #38bdf8;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .search-box {
+            margin-top: 10px;
+        }
+
+        .search-box input {
+            padding: 7px;
+            width: 200px;
+        }
+
+        .search-box button {
+            padding: 7px 12px;
+            background: #38bdf8;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #6b7280;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📝 Personal To-Do Manager</h1>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/add">Add Task</a>
+        <a href="/about">About</a>
+    </nav>
+
+    <div class="search-box">
+        <form action="/search" method="get">
+            <input type="text" name="q" placeholder="Search tasks...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+<footer>
+    <p>Built using Flask & Jinja2 | Part-6 Project</p>
+</footer>
+
+</body>
+</html>

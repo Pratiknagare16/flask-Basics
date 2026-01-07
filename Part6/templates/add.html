@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2> Add New Task</h2>
+
+<form method="post" style="margin-top: 20px;">
+
+    <label><b>Task Title</b></label><br>
+    <input 
+        type="text" 
+        name="title" 
+        placeholder="Enter task title"
+        required
+        style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px;"
+    >
+
+    <label><b>Status</b></label><br>
+    <select 
+        name="status" 
+        style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px;"
+    >
+        <option value="Pending">Pending</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+    </select>
+
+    <label><b>Priority</b></label><br>
+    <select 
+        name="priority"
+        style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 20px;"
+    >
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+    </select>
+
+    <button 
+        type="submit"
+        style="
+            background: #1f2937;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        "
+    >
+        Add Task
+    </button>
+
+    <a 
+        href="/" 
+        style="
+            margin-left: 15px;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: bold;
+        "
+    >
+        Cancel
+    </a>
+
+</form>
+{% endblock %}

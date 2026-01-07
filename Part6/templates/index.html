@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>All Tasks</h2>
+
+<div style="margin-bottom: 20px;">
+    <a href="/add"
+       style="
+           background: #1f2937;
+           color: white;
+           padding: 10px 15px;
+           text-decoration: none;
+           border-radius: 5px;
+           font-weight: bold;
+       ">
+        Add New Task
+    </a>
+</div>
+
+{% if tasks %}
+
+<table width="100%" cellpadding="10" style="border-collapse: collapse;">
+    <tr style="background:#e5e7eb;">
+        <th align="left">ID</th>
+        <th align="left">Title</th>
+        <th align="left">Status</th>
+        <th align="left">Priority</th>
+        <th align="left">View</th>
+    </tr>
+
+    {% for task in tasks %}
+    <tr style="border-bottom:1px solid #ddd;">
+        <td>{{ task.id }}</td>
+
+        <td>{{ task.title | upper }}</td>
+
+        <td>
+            {% if task.status == "Completed" %}
+                <span style="color: green; font-weight:bold;">{{ task.status }}</span>
+            {% elif task.status == "In Progress" %}
+                <span style="color: orange; font-weight:bold;">{{ task.status }}</span>
+            {% else %}
+                <span style="color: red; font-weight:bold;">{{ task.status }}</span>
+            {% endif %}
+        </td>
+
+        <td>{{ task.priority }}</td>
+
+        <td>
+            <a href="/task/{{ task.id }}"
+               style="color:#2563eb; font-weight:bold; text-decoration:none;">
+                View
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+<p>No tasks found.</p>
+{% endif %}
+
+{% endblock %}

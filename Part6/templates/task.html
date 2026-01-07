@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Task Details</h2>
+
+<div style="margin-top: 20px;">
+
+    <p>
+        <strong>ID:</strong> {{ task.id }}
+    </p>
+
+    <p>
+        <strong>Title:</strong> {{ task.title }}
+    </p>
+
+    <p>
+        <strong>Status:</strong> 
+        {% if task.status == "Completed" %}
+            <span style="color: green; font-weight: bold;">{{ task.status }}</span>
+        {% elif task.status == "In Progress" %}
+            <span style="color: orange; font-weight: bold;">{{ task.status }}</span>
+        {% else %}
+            <span style="color: red; font-weight: bold;">{{ task.status }}</span>
+        {% endif %}
+    </p>
+
+    <p>
+        <strong>Priority:</strong> {{ task.priority }}
+    </p>
+
+</div>
+
+<div style="margin-top: 25px;">
+    <a href="/" style="color:#2563eb; text-decoration:none; font-weight:bold;">
+        Back to Task List
+    </a>
+</div>
+
+{% endblock %}
